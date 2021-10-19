@@ -7,15 +7,21 @@ metadata:
 data:
   jupyterhub-singleuser-profiles.yaml: |
       profiles:
-      - name: Additional Profile
+      - name: Workshop Notebook
         env:
-          - name: ADDITIONAL_VARIABLE
-            value: "Some value"
+          - name: JUPYTER_PRELOAD_REPOS:
+            value: "https://github.com/OpenShiftDemos/fraud-notebooks"
+          - JUPYTER_ENABLE_LAB:
+            value: '1'
+        gpu: '0'
+        last_selected_image: ml-workflows-notebook:latest
+        images:
+        - "ml-workflows-notebook:latest"
         resources:
           requests:
-            memory: 1Gi
-            cpu: 1
-          limits:
             memory: 2Gi
-            cpu: 2
+            cpu: 500m
+          limits:
+            memory: 4Gi
+            cpu: 1
 
